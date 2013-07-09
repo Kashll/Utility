@@ -11,5 +11,13 @@ namespace Utility
         {
             return string.Format(CultureInfo.InvariantCulture, formatString, args);
         }
+
+        /// <summary>
+        /// Extension method for string.IsNullOrEmpty
+        /// </summary>
+        public static bool IsNullOrEmpty(this string value)
+        {
+            return string.IsNullOrEmpty(value);
+        }
     }
 }
