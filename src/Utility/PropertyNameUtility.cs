@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq.Expressions;
 
 namespace Utility
@@ -15,6 +16,11 @@ namespace Utility
                 return memberExpression.Member.Name;
 
             throw new InvalidOperationException("Couldn't get property name for {0}".FormatInvariant(propertyExpression));
+        }
+
+        public static bool HasChanged(this PropertyChangedEventArgs e, string propertyName)
+        {
+            return e.PropertyName.IsNullOrEmpty() || e.PropertyName == propertyName;
         }
     }
 }

@@ -11,15 +11,16 @@ namespace Utility
             remove { m_propertyChangedEventHandler -= value; }
         }
 
-        public void RaisePropertyChanged(params string[] propertyNames)
+        protected void RaisePropertyChanged(params string[] propertyNames)
         {
             foreach (string propertyName in propertyNames)
                 RaisePropertyChanged(propertyName);
         }
 
-        public void RaisePropertyChanged(string propertyName)
+        protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = m_propertyChangedEventHandler;
+            OnPropertyChanged(propertyName);
 
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -27,10 +28,6 @@ namespace Utility
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChangedEventHandler handler = m_propertyChangedEventHandler;
-
-            if (handler != null) 
-                handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
         protected bool SetPropertyField<T>(string propertyName, T value, ref T field)
