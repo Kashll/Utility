@@ -9,7 +9,7 @@ namespace Utility
         /// <summary>
         /// Uses reflection to get the name of the property for the given expression
         /// </summary>
-        public static string GetPropertyName<TProperty>(Expression<Func<TProperty>> propertyExpression)
+        public static string GetPropertyName<T, TProperty>(Expression<Func<T, TProperty>> propertyExpression)
         {
             MemberExpression memberExpression = propertyExpression.Body as MemberExpression;
             if (memberExpression != null)
