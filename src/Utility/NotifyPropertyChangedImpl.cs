@@ -22,15 +22,14 @@ namespace Utility
 			PropertyChangedEventHandler handler = m_propertyChangedEventHandler;
 			OnPropertyChanged(propertyName);
 
-			if (handler != null)
-				handler(this, new PropertyChangedEventArgs(propertyName));
+		    handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 
 		protected virtual void OnPropertyChanged(string propertyName)
 		{
 		}
 
-		protected bool SetPropertyField<T>(string propertyName, T value, ref T field)
+		protected bool SetPropertyAndField<T>(string propertyName, T value, ref T field)
 		{
 			if (EqualityComparer<T>.Default.Equals(value, field))
 				return false;
